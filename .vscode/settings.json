@@ -1,0 +1,17 @@
+{
+  "prettier.arrowParens": "avoid",
+  "prettier.enable": true,
+  "prettier.endOfLine": "crlf",
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 80,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "typescript.format.insertSpaceAfterTypeAssertion": true,
+  "editor.formatOnType": true,
+  "files.autoSave": "off",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
+}
