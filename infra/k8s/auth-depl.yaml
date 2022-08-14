@@ -13,8 +13,16 @@ spec:
         app: auth
     spec:
       containers:
-      - name: auth
-        image: khanhdp95/auth
+        - name: auth
+          image: khanhdp95/auth
+          # to create JWT_KEY, run below command
+          # kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
 ---
 apiVersion: v1
 kind: Service
@@ -24,5 +32,5 @@ spec:
   selector:
     app: auth
   ports:
-  - port: 3000
-    targetPort: 3000
+    - port: 3000
+      targetPort: 3000
