@@ -8,6 +8,15 @@ build:
   local:
     push: false
   artifacts:
+    - image: khanhdp95/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+
     - image: khanhdp95/auth
       context: auth
       docker:
@@ -16,11 +25,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: khanhdp95/client
-      context: client
+
+    - image: khanhdp95/tickets
+      context: tickets
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: '**/*.js'
+          - src: 'src/**/*.ts'
             dest: .

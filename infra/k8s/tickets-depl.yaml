@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-depl
+  name: tickets-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth
+      app: tickets
   template:
     metadata:
       labels:
-        app: auth
+        app: tickets
     spec:
       containers:
-        - name: auth
-          image: khanhdp95/auth
+        - name: tickets
+          image: khanhdp95/tickets
           resources:
             limits:
               memory: 512Mi
@@ -26,7 +26,7 @@ spec:
           # kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf
           env:
             - name: MONGO_URI
-              value: 'mongodb://auth-mongo-srv:27017/auth'
+              value: 'mongodb://tickets-mongo-srv:27017/tickets'
 
             - name: JWT_KEY
               valueFrom:
@@ -37,10 +37,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-srv
+  name: tickets-srv
 spec:
   selector:
-    app: auth
+    app: tickets
   ports:
     - port: 3000
       targetPort: 3000
