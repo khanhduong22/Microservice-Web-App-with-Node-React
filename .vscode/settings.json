@@ -13,5 +13,9 @@
   "editor.formatOnType": true,
   "files.autoSave": "off",
   "editor.tabSize": 2,
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+  "interactiveWindow.restore": true,
+  "editor.fontFamily": "'Fira Code'",
+  "editor.fontLigatures": true
 }
