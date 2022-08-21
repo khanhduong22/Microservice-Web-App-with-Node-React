@@ -15,16 +15,27 @@ spec:
       containers:
         - name: tickets
           image: khanhdp95/tickets
-          resources:
-            limits:
-              memory: 512Mi
-              cpu: '1'
-            requests:
-              memory: 256Mi
-              cpu: '0.2'
+          # resources:
+          #   limits:
+          #     memory: 512Mi
+          #     cpu: '1'
+          #   requests:
+          #     memory: 256Mi
+          #     cpu: '0.2'
           # to create JWT_KEY, run below command
           # kubectl create secret generic jwt-secret --from-literal JWT_KEY=asdf
           env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+
             - name: MONGO_URI
               value: 'mongodb://tickets-mongo-srv:27017/tickets'
 
