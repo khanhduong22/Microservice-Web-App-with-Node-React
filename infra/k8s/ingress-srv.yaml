@@ -26,6 +26,15 @@ spec:
                 port:
                   number: 3000
 
+          - path: /api/orders/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: orders-srv
+                port:
+                  number: 3000
+
+          #! Please make sure below path always at the very BOTTOM
           - path: /?(.*)
             pathType: Prefix
             backend:
