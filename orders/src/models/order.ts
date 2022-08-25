@@ -1,6 +1,7 @@
 import { OrderStatus } from '@khanhdp955/common'
 import mongoose from 'mongoose'
 import { TicketDoc } from './ticket'
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 
 export { OrderStatus }
 
@@ -20,6 +21,7 @@ interface OrderDoc extends mongoose.Document {
   expiresAt: Date
   userId: string
   ticket: TicketDoc
+  version: number
 }
 
 // An interface that describes the properties
@@ -50,7 +52,6 @@ const orderSchema = new mongoose.Schema(
   },
   {
     toJSON: {
-      versionKey: false,
       transform(doc, ret) {
         ret.id = ret._id
         delete ret._id
@@ -58,6 +59,9 @@ const orderSchema = new mongoose.Schema(
     },
   }
 )
+
+orderSchema.set('versionKey', 'version')
+orderSchema.plugin(updateIfCurrentPlugin)
 
 orderSchema.statics.build = (attrs: OrderAttrs) => {
   return new Order(attrs)

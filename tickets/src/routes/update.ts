@@ -6,6 +6,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizeError,
+  BadRequestError,
 } from '@khanhdp955/common'
 
 import { TicketUpdatedPublisher } from '../events/publisher/ticket-updated-publisher'
@@ -30,6 +31,10 @@ router.put(
       throw new NotFoundError()
     }
 
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket')
+    }
+
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorizeError()
     }
@@ -45,6 +50,7 @@ router.put(
       title: ticket.title,
       price: ticket.price,
       userId: ticket.userId,
+      version: ticket.version,
     })
 
     res.send(ticket)
