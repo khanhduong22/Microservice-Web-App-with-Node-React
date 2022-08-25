@@ -43,3 +43,12 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: khanhdp95/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .

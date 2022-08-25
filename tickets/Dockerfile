@@ -3,7 +3,7 @@ FROM node:alpine
 WORKDIR /app
 
 COPY package.json .
-RUN npm i --only=prod
+RUN npm i --only=prod --legacy-peer-deps
 
 COPY . .
 
