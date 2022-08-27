@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache",
+    "test:ci": "jest",
     "update": "npx npm-check-updates @khanhdp955/common && npm install"
   },
   "jest": {
