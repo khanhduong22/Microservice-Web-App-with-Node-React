@@ -34,6 +34,14 @@ spec:
                 port:
                   number: 3000
 
+          - path: /api/payments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payments-srv
+                port:
+                  number: 3000
+
           #! Please make sure below path always at the very BOTTOM
           - path: /?(.*)
             pathType: Prefix
